@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ -z "$APP" ]; then
+    export APP=app.js
+fi
+
+if [ -z "$WATCH" ]; then
+    export WATCH=false
+fi
+
+COMMAND="pm2 start $APP -i 0 --no-daemon"
+
+if [ "$WATCH" == "true" ]; then
+    COMMAND=$COMMAND" --watch"
+fi
+
+cd /app
+$COMMAND
