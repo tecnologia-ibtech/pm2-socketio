@@ -20,5 +20,5 @@ RUN chmod +x /start
 # Expor a porta padrão
 EXPOSE 5225
 
-# Definir entrada para PM2 considerando as variáveis de ambiente APP e WATCH
-CMD ["pm2-runtime", "start", "--name", "socketio-app", "$APP", "--watch=$WATCH"]
+ENV APP=index.js
+CMD ["sh", "-c", "pm2-runtime start --name socketio-app /app/${APP} --watch=${WATCH}"]
